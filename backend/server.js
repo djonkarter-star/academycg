@@ -12,14 +12,12 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB подключение (пока заглушка)
-console.log('MongoDB connection: not implemented yet');
-
-// Маршруты API
+// Простой маршрут для тестирования
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Backend is running!' });
+  res.json({ status: 'OK', message: 'Backend is running!', timestamp: new Date() });
 });
 
+// Маршрут для получения уроков (заглушка)
 app.get('/api/lessons', (req, res) => {
   const mockLessons = [
     {
@@ -43,6 +41,7 @@ app.get('/api/lessons', (req, res) => {
 });
 
 // Запуск сервера
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
+  console.log(`Health check: http://0.0.0.0:${PORT}/api/health`);
 });
